@@ -53,16 +53,23 @@
         </p>
 
         <!-- API Key Notice -->
-        <div class="max-w-2xl mx-auto api-notice p-5 rounded-2xl text-left flex items-start gap-4">
-            <i class="fas fa-key text-indigo-400 mt-1 text-xl"></i>
+        <div class="max-w-2xl mx-auto api-notice p-6 rounded-2xl text-left flex items-start gap-4">
+            <div class="text-indigo-400 mt-1">
+                <i class="fas fa-shield-halved text-2xl"></i>
+            </div>
             <div>
-                <h2 class="text-sm font-bold text-indigo-300 mb-1">各ツールの利用にはAPIキーが必要です</h2>
+                <h2 class="text-sm font-bold text-indigo-300 mb-1">APIキーの利用と安全性について</h2>
                 <p class="text-xs text-slate-400 leading-relaxed mb-3">
-                    本ページで公開しているAIツールは、Google Gemini APIを使用して動作します。お手数ですが、以下のリンクよりAPIキーを取得し、各ツールの設定画面に入力してください。
+                    本ツールのAI機能には <strong>Google Gemini APIキー</strong> が必要です。<br>お手数ですが、以下のリンクよりAPIキーを取得し、各ツールの設定画面に入力してください。<br>入力されたキーはブラウザの<strong>ローカルストレージにのみ保存</strong>され、外部サーバーへの送信や保存は一切行われません。安心してご利用ください。
                 </p>
-                <a href="https://aistudio.google.com/app/apikey" target="_blank" class="inline-flex items-center text-[11px] font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-full transition">
-                    Google AI Studioでキーを取得 (無料) <i class="fas fa-external-link-alt ml-2 text-[9px]"></i>
-                </a>
+                <div class="flex flex-wrap gap-3">
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank" class="inline-flex items-center text-[10px] font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-full transition">
+                        APIキーを取得 (無料) <i class="fas fa-external-link-alt ml-2 text-[8px]"></i>
+                    </a>
+                    <span class="inline-flex items-center text-[10px] font-bold text-slate-500 bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
+                        <i class="fas fa-lock mr-2 text-emerald-500"></i> Serverless & Local Save
+                    </span>
+                </div>
             </div>
         </div>
     </header>
@@ -130,9 +137,37 @@
                     </div>
                     <span class="text-[10px] font-bold bg-slate-800 text-slate-500 px-3 py-1 rounded-full uppercase tracking-widest">Planning</span>
                 </div>
-                <h2 class="text-xl font-bold mb-2">Development</h2>
+                <h2 class="text-xl font-bold mb-2">New Concept</h2>
                 <p class="text-slate-500 text-sm mb-6 leading-relaxed">
-                    クリエイティブな活動をサポートする機能を拡張。
+                    クリエイティブな活動をサポートする新しい機能を開発中。
+                </p>
+            </div>
+
+            <!-- Tool 5: Placeholder -->
+            <div class="tool-card p-6 rounded-3xl opacity-60 relative overflow-hidden group">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-slate-700 flex items-center justify-center text-slate-500">
+                        <i class="fas fa-microchip text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] font-bold bg-slate-800 text-slate-500 px-3 py-1 rounded-full uppercase tracking-widest">Planning</span>
+                </div>
+                <h2 class="text-xl font-bold mb-2">Advanced Lab</h2>
+                <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+                    AIと配信の可能性を広げる実験的プロジェクト。
+                </p>
+            </div>
+
+            <!-- Tool 6: Placeholder -->
+            <div class="tool-card p-6 rounded-3xl opacity-60 relative overflow-hidden group">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-slate-700 flex items-center justify-center text-slate-500">
+                        <i class="fas fa-wand-magic-sparkles text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] font-bold bg-slate-800 text-slate-500 px-3 py-1 rounded-full uppercase tracking-widest">Planning</span>
+                </div>
+                <h2 class="text-xl font-bold mb-2">Magic Box</h2>
+                <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+                    リスナーとの距離を縮める、魔法のような演出ツール。
                 </p>
             </div>
 
@@ -141,14 +176,16 @@
 
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-12 text-center">
-        <div class="flex justify-center gap-6 mb-6 text-slate-500">
+        <div class="flex justify-center gap-6 mb-4 text-slate-500">
             <a href="https://github.com/Umetana" class="hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
             <a href="https://x.com/umetana_elf" class="hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
         </div>
+        <p class="text-[10px] text-slate-500 mb-6 px-4">
+            使用・改造は自由ですが、本ツールの利用による損害等について制作者は一切の責任を負いません。<br class="md:hidden">
+            MITライセンスに準じたオープンな精神で公開しています。
+        </p>
         <p class="text-[10px] text-slate-600 tracking-widest uppercase">© 2026 V-Creator Project All Rights Reserved.</p>
     </footer>
 
 </body>
 </html>
-
-
