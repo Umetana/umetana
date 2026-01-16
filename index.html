@@ -34,6 +34,10 @@
         .bg-gradient-v {
             background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
         }
+        .api-notice {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -44,9 +48,23 @@
             <i class="fas fa-cubes text-4xl"></i>
         </div>
         <h1 class="text-4xl md:text-5xl font-bold vtuber-font tracking-widest mb-4">V-Creator Tools</h1>
-        <p class="text-slate-400 max-w-lg mx-auto text-sm leading-relaxed">
+        <p class="text-slate-400 max-w-lg mx-auto text-sm leading-relaxed mb-8">
             VTuber活動や配信を便利にする自作ツール群。分析、管理、演出など、クリエイティブな活動をサポートします。
         </p>
+
+        <!-- API Key Notice -->
+        <div class="max-w-2xl mx-auto api-notice p-5 rounded-2xl text-left flex items-start gap-4">
+            <i class="fas fa-key text-indigo-400 mt-1 text-xl"></i>
+            <div>
+                <h2 class="text-sm font-bold text-indigo-300 mb-1">各ツールの利用にはAPIキーが必要です</h2>
+                <p class="text-xs text-slate-400 leading-relaxed mb-3">
+                    本ページで公開しているAIツールは、Google Gemini APIを使用して動作します。お手数ですが、以下のリンクよりAPIキーを取得し、各ツールの設定画面に入力してください。
+                </p>
+                <a href="https://aistudio.google.com/app/apikey" target="_blank" class="inline-flex items-center text-[11px] font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-full transition">
+                    Google AI Studioでキーを取得 (無料) <i class="fas fa-external-link-alt ml-2 text-[9px]"></i>
+                </a>
+            </div>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -63,7 +81,7 @@
                 </div>
                 <h2 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">キショコメ文化研究プログラム</h2>
                 <p class="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
-                    配信者とリスナーの高度な「プロレス」コミュニケーションを研究するためのプログラム。文脈の深淵を探求します。
+                    配信者とリスナーの高度な「プロレス」コミュニケーションを研究するためのプログラム。文脈の深淵を探究します。
                 </p>
                 <div class="flex items-center text-xs font-bold text-emerald-400 mt-auto">
                     プロジェクトを見る <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
@@ -80,26 +98,29 @@
                 </div>
                 <h2 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition-colors">V-Analyse</h2>
                 <p class="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
-                    AI（Gemini）を活用したコメント分析ツール。YouTubeリスクの判定や、独自の「キショコメ辞典」作成が可能です。
+                    AIを活用したコメント分析ツール。YouTubeリスクの判定や、独自の「キショコメ辞典」作成が可能です。
                 </p>
                 <div class="flex items-center text-xs font-bold text-indigo-400 mt-auto">
                     ツールを開く <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </div>
             </a>
 
-            <!-- Tool 3: Placeholder -->
-            <div class="tool-card p-6 rounded-3xl opacity-60 relative overflow-hidden group">
+            <!-- Tool 3: AI Talk Deck pro -->
+            <a href="https://umetana.github.io/ai-talkdeck-pro/" class="tool-card p-6 rounded-3xl block group">
                 <div class="flex justify-between items-start mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-slate-700 flex items-center justify-center text-slate-500">
-                        <i class="fas fa-wrench text-2xl"></i>
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 flex items-center justify-center text-amber-400 group-hover:bg-amber-500 group-hover:text-white transition-all">
+                        <i class="fas fa-comments text-2xl"></i>
                     </div>
-                    <span class="text-[10px] font-bold bg-slate-800 text-slate-500 px-3 py-1 rounded-full uppercase tracking-widest">Planning</span>
+                    <span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 px-3 py-1 rounded-full border border-amber-500/20 uppercase">Release</span>
                 </div>
-                <h2 class="text-xl font-bold mb-2">Next Tool...</h2>
-                <p class="text-slate-500 text-sm mb-6 leading-relaxed">
-                    配信をより楽しく、より効率的にする機能を開発予定。
+                <h2 class="text-xl font-bold mb-2 group-hover:text-amber-400 transition-colors">AI Talk Deck pro</h2>
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
+                    配信中のトークをAIがサポート。話題の生成やリスナーとの対話をより豊かにするプロフェッショナルデッキ。
                 </p>
-            </div>
+                <div class="flex items-center text-xs font-bold text-amber-400 mt-auto">
+                    デッキを展開する <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
 
             <!-- Tool 4: Placeholder -->
             <div class="tool-card p-6 rounded-3xl opacity-60 relative overflow-hidden group">
@@ -129,4 +150,3 @@
 
 </body>
 </html>
-
