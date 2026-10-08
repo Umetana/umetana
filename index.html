@@ -1,202 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V-Creator Tools | 制作物一覧</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700&display=swap');
-        
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-        .vtuber-font {
-            font-family: 'DotGothic16', sans-serif;
-        }
-        .tool-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .tool-card:hover {
-            transform: translateY(-5px);
-            border-color: #6366f1;
-            background: rgba(30, 41, 59, 0.9);
-        }
-        .bg-gradient-v {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-        }
-        .api-notice {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="うめたなが作る配信ツール、AIツール、ブラウザゲーム、歌詞の入口。">
+<title>うめたなの制作物 | Umetana Works</title>
+<style>
+:root{color-scheme:dark;--bg:#101918;--panel:#192725;--ink:#edf4ea;--muted:#b1c3ba;--line:#334741;--accent:#c7ee86}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Yu Gothic UI",sans-serif}a{color:inherit}main,header,footer{width:min(1120px,calc(100% - 40px));margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}.brand{font-weight:800;text-decoration:none;letter-spacing:.08em}nav{display:flex;gap:22px;font-size:.85rem}nav a{color:var(--muted);text-decoration:none}
+.hero{padding:76px 0 54px;max-width:800px}.eyebrow{color:var(--accent);font-size:.78rem;letter-spacing:.18em;font-weight:700}h1{font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:-.04em;line-height:1.2;margin:20px 0}p{line-height:1.8}.intro{color:var(--muted);max-width:620px}
+.feature{border:1px solid #60784b;border-radius:22px;padding:36px;background:linear-gradient(115deg,#2e422d,#192725);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.feature h2{font-size:2rem;margin:10px 0}.feature p{color:#d2dfc7;margin:0;max-width:680px}.button{display:inline-block;background:var(--accent);color:#142012;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:800;white-space:nowrap}
+section{margin:56px 0}.section-head{display:flex;align-items:baseline;gap:18px;margin-bottom:22px}.section-head h2{margin:0;font-size:1.5rem}.section-head span{color:var(--muted);font-size:.85rem}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{display:flex;flex-direction:column;padding:26px;background:var(--panel);border:1px solid var(--line);border-radius:18px;text-decoration:none;transition:background .18s,transform .18s}.card:hover{background:#233630;transform:translateY(-3px)}.tag{color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.1em}.card h3{font-size:1.25rem;margin:20px 0 8px}.card p{font-size:.9rem;color:var(--muted);margin:0 0 24px}.go{font-size:.85rem;font-weight:700;margin-top:auto;color:var(--accent)}.notice{font-size:.85rem;color:var(--muted);border-left:3px solid var(--line);padding:4px 18px;margin-top:22px}.notice a{color:var(--ink)}.other .card:nth-child(2) .tag,.other .card:nth-child(2) .go{color:#edc59a}.other .card:nth-child(3) .tag,.other .card:nth-child(3) .go{color:#b5d2f3}
+footer{border-top:1px solid var(--line);padding:28px 0 36px;color:var(--muted);font-size:.8rem;display:flex;justify-content:space-between;gap:20px}footer a{margin-left:18px}a:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.hero{padding:48px 0 34px}.feature{grid-template-columns:1fr;padding:26px}.feature .button{justify-self:start}.section-head{display:block}.section-head span{display:block;margin-top:8px}header{align-items:flex-start;gap:20px}nav{gap:12px;flex-wrap:wrap}footer{flex-direction:column}footer a{margin:0 18px 0 0}}
+@media(prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
 </head>
-<body class="min-h-screen">
-
-    <!-- Header -->
-    <header class="py-16 px-4 text-center">
-        <div class="inline-block p-3 rounded-2xl bg-gradient-v mb-6 shadow-lg shadow-indigo-500/20">
-            <i class="fas fa-cubes text-4xl"></i>
-        </div>
-        <h1 class="text-4xl md:text-5xl font-bold vtuber-font tracking-widest mb-4">V-Creator Tools</h1>
-        <p class="text-slate-400 max-w-lg mx-auto text-sm leading-relaxed mb-8">
-            VTuber活動や配信を便利にする自作ツール群。分析、管理、演出など、クリエイティブな活動をサポートします。
-        </p>
-
-        <!-- API Key Notice -->
-        <div class="max-w-2xl mx-auto api-notice p-6 rounded-2xl text-left flex items-start gap-4">
-            <div class="text-indigo-400 mt-1">
-                <i class="fas fa-shield-halved text-2xl"></i>
-            </div>
-            <div>
-                <h2 class="text-sm font-bold text-indigo-300 mb-1">APIキーの利用と安全性について</h2>
-                <p class="text-xs text-slate-400 leading-relaxed mb-3">
-                    本ツールのAI機能には <strong>Google Gemini APIキー</strong> が必要です。<br>お手数ですが、以下のリンクよりAPIキーを取得し、各ツールの設定画面に入力してください。<br>入力されたキーはブラウザの<strong>ローカルストレージにのみ保存</strong>され、外部サーバーへの送信や保存は一切行われません。安心してご利用ください。
-                </p>
-                <div class="flex flex-wrap gap-3">
-                    <a href="https://aistudio.google.com/app/apikey" target="_blank" class="inline-flex items-center text-[10px] font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-full transition">
-                        APIキーを取得 (無料) <i class="fas fa-external-link-alt ml-2 text-[8px]"></i>
-                    </a>
-                    <span class="inline-flex items-center text-[10px] font-bold text-slate-500 bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
-                        <i class="fas fa-lock mr-2 text-emerald-500"></i> Serverless & Local Save
-                    </span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 pb-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- Tool 1: キショコメ文化研究プログラム -->
-            <a href="https://umetana.github.io/pro-wrestling-communication/" class="tool-card p-6 rounded-3xl block group">
-                <div class="flex justify-between items-start mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                        <i class="fas fa-flask text-2xl"></i>
-                    </div>
-                    <span class="text-[10px] font-bold bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20 uppercase">Release</span>
-                </div>
-                <h2 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">キショコメ文化研究プログラム</h2>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
-                    配信者とリスナーの高度な「プロレス」コミュニケーションを研究するためのプログラム。文脈の深淵を探究します。
-                </p>
-                <div class="flex items-center text-xs font-bold text-emerald-400 mt-auto">
-                    プロジェクトを見る <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Tool 2: V-Analyse -->
-            <a href="https://umetana.github.io/vtuber-comment-analyzer/" class="tool-card p-6 rounded-3xl block group">
-                <div class="flex justify-between items-start mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all">
-                        <i class="fas fa-shield-cat text-2xl"></i>
-                    </div>
-                    <span class="text-[10px] font-bold bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/20 uppercase">Release</span>
-                </div>
-                <h2 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition-colors">V-Analyse</h2>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
-                    AIを活用したコメント分析ツール。YouTubeリスクの判定や、独自の「キショコメ辞典」作成が可能です。
-                </p>
-                <div class="flex items-center text-xs font-bold text-indigo-400 mt-auto">
-                    ツールを開く <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Tool 3: AI Talk Deck pro -->
-            <a href="https://umetana.github.io/ai-talkdeck-pro/" class="tool-card p-6 rounded-3xl block group">
-                <div class="flex justify-between items-start mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 flex items-center justify-center text-amber-400 group-hover:bg-amber-500 group-hover:text-white transition-all">
-                        <i class="fas fa-comments text-2xl"></i>
-                    </div>
-                    <span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 px-3 py-1 rounded-full border border-amber-500/20 uppercase">Release</span>
-                </div>
-                <h2 class="text-xl font-bold mb-2 group-hover:text-amber-400 transition-colors">AI Talk Deck pro</h2>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
-                    配信中のトークをAIがサポート。話題の生成やリスナーとの対話をより豊かにするプロフェッショナルデッキ。
-                </p>
-                <div class="flex items-center text-xs font-bold text-amber-400 mt-auto">
-                    デッキを展開する <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Tool 4: Material Hub -->
-            <a href="https://umetana.github.io/material-hub/" class="tool-card p-6 rounded-3xl block group">
-                <div class="flex justify-between items-start mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-all">
-                        <i class="fas fa-magnifying-glass-chart text-2xl"></i>
-                    </div>
-                    <span class="text-[10px] font-bold bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full border border-cyan-500/20 uppercase">Release</span>
-                </div>
-                <h2 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition-colors">Material Hub</h2>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
-                    事前準備を効率化。最新情報をリサーチし、配信構成・校正をサポートするスマートリサーチツール。
-                </p>
-                <div class="flex items-center text-xs font-bold text-cyan-400 mt-auto">
-                    リサーチを開始 <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Tool 5: GPマルチカウンター -->
-            <a href="https://github.com/Umetana/gp_multi_counter" class="tool-card p-6 rounded-3xl block group">
-                <div class="flex justify-between items-start mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-rose-500/20 flex items-center justify-center text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-all">
-                        <i class="fas fa-calculator text-2xl"></i>
-                    </div>
-                    <span class="text-[10px] font-bold bg-rose-500/10 text-rose-400 px-3 py-1 rounded-full border border-rose-500/20 uppercase">Release</span>
-                </div>
-                <h2 class="text-xl font-bold mb-2 group-hover:text-rose-400 transition-colors">GPマルチカウンター</h2>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed flex-grow">
-                    OBSでの運用に最適化。複数のカウンターを自由に作成・設定・操作できる配信者向け計数システム。
-                </p>
-                <div class="flex items-center text-xs font-bold text-rose-400 mt-auto">
-                    カウンターを開く <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-            </a>
-
-            <!-- Tool 6: Placeholder -->
-            <div class="tool-card p-6 rounded-3xl opacity-60 relative overflow-hidden group">
-                <div class="flex justify-between items-start mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-slate-700 flex items-center justify-center text-slate-500">
-                        <i class="fas fa-wand-magic-sparkles text-2xl"></i>
-                    </div>
-                    <span class="text-[10px] font-bold bg-slate-800 text-slate-500 px-3 py-1 rounded-full uppercase tracking-widest">Planning</span>
-                </div>
-                <h2 class="text-xl font-bold mb-2">Magic Box</h2>
-                <p class="text-slate-500 text-sm mb-6 leading-relaxed">
-                    リスナーとの距離を縮める、魔法のような演出ツール。
-                </p>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 py-12 text-center">
-        <div class="flex justify-center gap-6 mb-4 text-slate-500">
-            <a href="https://github.com/Umetana" class="hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
-            <a href="https://x.com/umetana_elf" class="hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
-        </div>
-        <p class="text-[10px] text-slate-500 mb-6 px-4">
-            使用・改造は自由ですが、本ツールの利用による損害等について制作者は一切の責任を負いません。<br class="md:hidden">
-            MITライセンスに準じたオープンな精神で公開しています。
-        </p>
-        <p class="text-[10px] text-slate-600 tracking-widest uppercase">© 2026 V-Creator Project All Rights Reserved.</p>
-    </footer>
-
+<body>
+<header><a class="brand" href="./">UMETANA WORKS</a><nav aria-label="ページ内案内"><a href="#tools">AIツール</a><a href="#works">ゲーム・作品</a><a href="https://github.com/Umetana">GitHub</a></nav></header>
+<main>
+<div class="hero"><p class="eyebrow">TOOLS, GAMES & WORDS</p><h1>配信をつくる。<br>気軽に遊ぶ。言葉で遊ぶ。</h1><p class="intro">うめたなの制作物をまとめた入口です。配信を支えるVCreatorToolsから、ブラウザーで使えるAIツール、ゲーム、歌詞まで。</p></div>
+<div class="feature"><div><span class="tag">配信ツール / VCT</span><h2>VCreatorTools</h2><p>カウンター、マロ読みパネル、Material Hubなど、配信の準備と演出をまとめて。現行版の案内・配布はこちらから。</p></div><a class="button" href="https://github.com/Umetana/VCreatorTools_App">VCTを見に行く →</a></div>
+<section aria-label="わんコメカスタムテンプレート"><div class="feature"><div><span class="tag">配信ツール / わんコメ</span><h2>わんコメカスタムテンプレート</h2><p>わんコメで使うカスタムテンプレート。内容や導入方法は、リポジトリの案内をご覧ください。</p></div><a class="button" href="https://github.com/Umetana/vcreatortools-one">テンプレートを見る →</a></div></section>
+<section id="tools"><div class="section-head"><h2>ブラウザーで使うAIツール</h2><span>Google Gemini APIキーが必要です</span></div><div class="grid">
+<a class="card" href="https://umetana.github.io/vtuber-comment-analyzer/"><span class="tag">COMMENT ANALYSIS</span><h3>V-Analyse</h3><p>コメントをAIで分析。判定や独自の辞典づくりに。</p><span class="go">ツールを開く →</span></a>
+<a class="card" href="https://umetana.github.io/pro-wrestling-communication/"><span class="tag">COMMUNICATION</span><h3>キショコメ文化研究</h3><p>配信者とリスナーの「プロレス」コミュニケーションを研究するプログラム。</p><span class="go">ツールを開く →</span></a>
+<a class="card" href="https://umetana.github.io/ai-talkdeck-pro/"><span class="tag">TALK SUPPORT</span><h3>AI Talk Deck Pro</h3><p>配信の話題づくりをAIがサポートするトークデッキ。</p><span class="go">ツールを開く →</span></a>
+</div><p class="notice">各ツールに自分のAPIキーを入力して利用します。AI処理の際は、入力内容とAPIキーがGoogleのGemini APIへ送信されます。利用条件・料金はGoogle側の案内をご確認ください。 <a href="https://aistudio.google.com/app/apikey">APIキーの管理 →</a></p></section>
+<section id="works"><div class="section-head"><h2>遊ぶ・読む・つくる</h2><span>気になるものから、どうぞ</span></div><div class="grid other">
+<a class="card" href="https://umetana.github.io/umetana_games/"><span class="tag">BROWSER GAMES</span><h3>うめたなゲームズ</h3><p>ノノグラムやスライディングパズル。ブラウザーで気軽に遊べるゲーム置き場。</p><span class="go">ゲームを選ぶ →</span></a>
+<a class="card" href="https://github.com/Umetana/TECHNICAL_LYRICS"><span class="tag">LYRICS</span><h3>TECHNICAL LYRICS</h3><p>難解歌詞の置き場。言葉と表現を楽しむ作品集。</p><span class="go">歌詞を読む →</span></a>
+<a class="card" href="https://umetana.github.io/vct-stream-designer/"><span class="tag">VCT / WEB DEMO</span><h3>Stream Designer</h3><p>週間予定表やカレンダー画像をつくる、ブラウザー完結のお試し版。</p><span class="go">お試し版を開く →</span></a>
+</div></section>
+<p class="notice">GPマルチカウンター・マロ読みパネル・Material Hubの現行版は、VCreatorToolsに統合されています。</p>
+</main>
+<footer><span>© Umetana · 利用条件は各制作物の案内をご確認ください。</span><div><a href="https://github.com/Umetana">GitHub</a><a href="https://x.com/umetana_elf">X</a></div></footer>
 </body>
 </html>
-
-
-
-
-
